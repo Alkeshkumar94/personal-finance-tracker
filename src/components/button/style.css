@@ -1,0 +1,29 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--theme);
+  color: var(--theme);
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--theme);
+  color: #fff;
+  transition: all 0.3s;
+}
+.btn-blue {
+  background-color: var(--theme);
+  color: #fff;
+}
+.btn-blue:hover {
+  background-color: #fff;
+  color: var(--theme);
+  transition: all 0.3s;
+}
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px #333;
+}

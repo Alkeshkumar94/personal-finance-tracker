@@ -1,0 +1,22 @@
+.input-wrapper {
+  margin-bottom: 1.2rem;
+}
+.label {
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+.custom-input {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-color: #07070780;
+  width: 100%;
+  padding: 0.5rem 0rem;
+  font-size: 0.8rem;
+  color: rgb(34, 33, 33);
+}
+.custom-input:focus {
+  outline: none;
+  transition: all 0.2s;
+}

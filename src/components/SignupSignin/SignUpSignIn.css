@@ -1,0 +1,17 @@
+.signUpForm,
+.loginForm {
+  width: 70%;
+  max-width: 450px;
+  margin-top: 30px;
+  height: auto;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  border-radius: 1rem 1.5rem;
+}
+.title {
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
