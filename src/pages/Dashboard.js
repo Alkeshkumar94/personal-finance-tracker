@@ -4,12 +4,12 @@ import Cards from "../components/Cards/index";
 import { Modal } from "antd";
 import AddExpense from "../components/Modals/addExpense";
 import AddIncome from "../components/Modals/addIncome";
-import { collection, addDoc,getDocs,query } from "firebase/firestore";
+import {deleteDoc,doc, collection, addDoc,getDocs,query } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { toast } from "react-toastify";
 import TransactionTable from "../components/TransactionsTable/index";
-import ChartComponent from "../components/charts";
+import ChartComponent from "../components/charts/index";
 import NoTransaction from "../components/Notransaction";
 
 function Dashboard() {
@@ -116,8 +116,30 @@ const calculateBalance=()=>{
     setLoading(false);
   }
 
+ let sortTransactions=transactions.sort((a,b)=>{
+  return new Date(a.date)-new Date(b.date);
+ })
 
+ async function resetBalance() {
+  try {
+    const q = query(collection(db, `users/${user.uid}/transactions`));
+    const querySnapshot = await getDocs(q);
 
+    const deletePromises = querySnapshot.docs.map((docSnapshot) => 
+      deleteDoc(doc(db, `users/${user.uid}/transactions`, docSnapshot.id))
+    );
+
+    await Promise.all(deletePromises);
+    setTransactions([]);
+    setIncome(0);
+    setExpense(0);
+    setBalance(0);
+
+    toast.success("All transactions reset successfully!", { autoClose: 1000 });
+  } catch (e) {
+    toast.error("Failed to reset transactions", { autoClose: 1000 });
+  }
+}
   return (
     <div>
       <Header />
@@ -129,8 +151,9 @@ const calculateBalance=()=>{
         balance={balance}
         showExpenseModal={showExpenseModal}
         showIncomeModal={showIncomeModal}
+        resetBalance={resetBalance}
       />
-      {transactions.length !==0 ? <ChartComponent/> : <NoTransaction/>}
+      {transactions && transactions.length !==0 ? <ChartComponent sortTransactions={sortTransactions}/> : <NoTransaction/>}
       <AddIncome
         isIncomeModalVisible={isIncomeModalVisible}
         handleIncomeCancel={handleIncomeCancel}

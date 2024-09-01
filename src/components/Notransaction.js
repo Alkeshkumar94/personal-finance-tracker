@@ -10,7 +10,7 @@ function NoTransaction() {
         flexDirection:"column",
         marginBottom:"2rem"
     }}>
-       <img src={transaction} style={{width:"400px",margin:"4rem"}}/>
+       <img  className="noTransaction" src={transaction} />
        <p style={{textAlign:"center",fontSize:"1.2rem"}}>You have no transaction currently</p>
     </div>
   )

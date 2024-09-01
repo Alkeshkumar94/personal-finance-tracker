@@ -3,10 +3,82 @@
   padding: 0;
   font-family: "Monsterrat", sans-serif;
 }
-.wrapper {
+.wrapper{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
   width: 100vw;
+}
+.charts-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  justify-content: space-between;
+  margin: 2rem;
+  width: 90vw;
+}
+.heading1{
+  display: none;
+}
+
+.lineChart, .pieChart {
+  flex: 1 1 45%; /* Ensures both charts take up 45% of the width on larger screens */
+  margin: 1rem;
+  max-width: 48%; 
+  min-width: 300px; /* Ensures charts don't get too narrow on small screens */
+}
+
+.lineChart h2, .pieChart h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.noTransaction{
+  width:400px;
+  margin:2rem;
+}
+@media (max-width: 768px) {
+  .lineChart, .pieChart {
+    flex: 1 1 100%; /* Stacks the charts vertically on smaller screens */
+    margin: 1rem 0;
+    max-width: 100%;
+  }
+.noTransaction{
+  width:200px;
+}
+  .charts-wrapper {
+    padding: 1rem;
+    margin: 1rem;
+    width: 100vw;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .heading2{
+    display: none;
+  }
+
+  .heading1{
+    text-align: center;
+    display: block;
+  }
+  .lineChart, .pieChart {
+    flex: 1 1 100%;
+    margin: 0.5rem 0;
+    max-width: 100%;
+  }
+
+  .charts-wrapper {
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
 }

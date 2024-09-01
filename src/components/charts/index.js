@@ -1,39 +1,49 @@
 import React from 'react'
-import { Line } from '@ant-design/charts';
+import { Line,Pie } from '@ant-design/charts';
 
-function ChartComponent() {
-    const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-      ];
+function ChartComponent({sortTransactions}) {
+    const data =sortTransactions.map((item)=>{
+      return {date:item.date,amount:item.amount};
+    });
+    const spendingData=sortTransactions.filter((transaction)=>transaction.type==="expense");
     
+    let newSpend=[{tag:"food",amount:0},{tag:"education",amount:0},{tag:"office",amount:0}];
+    spendingData.forEach((item)=>{
+      if(item.tag==="food"){
+        newSpend[0].amount+=item.amount;
+      }
+      else if(item.tag==="education"){
+        newSpend[1].amount+=item.amount;
+      }
+      else{
+        newSpend[2].amount+=item.amount;
+      }
+    })
       const config = {
-        data,
-        xField: 'year',
-        width: '800',
-        height: '400',
-        autofit:false,
-        point:{
-            size:5,
-            shape:'diamond'
-        },
-        yField: 'value',
-        label:{
-            style:{
-             fill:'#aaa',
-            }
-        }
+        data:data,
+        xField: 'date',
+        width:300,
+        autoFit:true,
+        yField: 'amount',
       };
+      const spendingConfig = {
+        data:newSpend,
+        width:300,
+        angleField:"amount",
+        colorField:"tag",
+      };
+      let chart;
+      let pieChart;
   return (
-    <div>
-         <Line {...config} />;
+    <div className='charts-wrapper'>
+      <div className="lineChart">
+        <h2>Your Analytics</h2>
+      <Line {...config} onReady={(chartInstance)=>(chart=chartInstance)} />
+      </div>
+      <div className="pieChart">
+        <h2>Your Spendings</h2>
+      <Pie {...spendingConfig} onReady={(chartInstance)=>(pieChart=chartInstance)} />
+      </div>
     </div>
   )
 }

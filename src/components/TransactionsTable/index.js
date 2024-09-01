@@ -39,7 +39,7 @@ function TransactionTable({ transactions,addTransaction,fetchTransactions}) {
   ];
 
   let filterTransactions = transactions.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+    item.name.toLowerCase().includes(search.toLowerCase()) && (typeFilter ? item.type === typeFilter : true)
   );
 
   let sortedTransactions = filterTransactions.sort((a, b) => {
@@ -120,6 +120,7 @@ function TransactionTable({ transactions,addTransaction,fetchTransactions}) {
           <Option value="expense">Expense</Option>
         </Select>
       </div>
+      <h2 className="heading1">My Transaction</h2>
       <div className="my-table">
         <div
           style={{
@@ -130,7 +131,7 @@ function TransactionTable({ transactions,addTransaction,fetchTransactions}) {
             marginBottom: "1rem",
           }}
         >
-          <h2>My Transactions</h2>
+          <h2 className="heading2">My Transactions</h2>
 
           <Radio.Group
             className="input-radio"

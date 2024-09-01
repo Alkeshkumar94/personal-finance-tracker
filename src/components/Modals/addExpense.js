@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Form, Input, DatePicker} from "antd";
+import { Modal, Button, Form,Select, Input, DatePicker} from "antd";
 import "./style.css";
 
 function AddExpense({ isExpenseModalVisible, handleExpenseCancel, onFinish }) {
@@ -68,11 +68,15 @@ function AddExpense({ isExpenseModalVisible, handleExpenseCancel, onFinish }) {
           rules={[
             {
               required: true,
-              message: "Please input the tag!",
+              message: "Please select a tag!",
             },
           ]}
         >
-          <Input type="text" className="custom-Input" />
+          <Select className="select-input-2">
+            <Select.Option value="food">Food</Select.Option>
+            <Select.Option value="office">Office</Select.Option>
+            <Select.Option value="education">Education</Select.Option>
+          </Select>
         </Form.Item>
         
         <Form.Item>
