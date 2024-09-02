@@ -166,7 +166,7 @@ function TransactionTable({ transactions,addTransaction,fetchTransactions}) {
             />
           </div>
         </div>
-        <Table style={{overflow:"scroll"}} dataSource={filterTransactions} columns={columns} />
+        <Table  dataSource={filterTransactions} columns={columns} />
       </div>
     </div>
   );
