@@ -94,7 +94,7 @@ function TransactionTable({ transactions,addTransaction,fetchTransactions}) {
   }
 
   return (
-    <div style={{ width: "95%", padding: "0rem 2rem" }}>
+    <div style={{ width: "100%", padding: "0rem 2rem" }}>
       <div
         style={{
           display: "flex",
@@ -166,7 +166,7 @@ function TransactionTable({ transactions,addTransaction,fetchTransactions}) {
             />
           </div>
         </div>
-        <Table dataSource={filterTransactions} columns={columns} />
+        <Table style={{overflow:"scroll"}} dataSource={filterTransactions} columns={columns} />
       </div>
     </div>
   );

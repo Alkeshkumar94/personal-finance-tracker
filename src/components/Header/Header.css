@@ -3,7 +3,6 @@
   top: 0;
   display: flex;
   justify-content: space-between;
-  width:100%;
   align-items: center;
   color: var(--white);
   background-color: var(--theme);
